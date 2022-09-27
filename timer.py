@@ -1,18 +1,36 @@
-from time import sleep
+import time
+from datetime import datetime, timedelta
 
 class MantiTimer():
-    """This class hanles the time in the game"""
-    def __init__(self, target_time):
-        self.target_time = target_time
-        self.min_ = 0
-        self.sec_ = 0
-
-    def get_time(self):
+    """This class handles the time in the game"""
+    def __init__(self,min:int,sec:int) -> None :
+        self.min_ = min
+        self.sec_ = sec
+    
+    @property
+    def expiring_time(self):
         return f'{self.min_:02d}:{self.sec_:02d}'
+    
+    def start(self):
+        self.start_time = datetime.now()
+        return self.start_time
 
-    def next_sec(self):
-        self.sec_ = 1 + self.sec_
-        self.min_ = self.min_ + self.sec_ // 60
-        self.sec_ = self.sec_ % 60
-        #sleep(1)
-        return (self.min_, self.sec_)
+    @property
+    def get_time_str(self):
+        self.current_time = datetime.now() - self.start_time
+        self.new_min = int(self.current_time.total_seconds()//60)
+        self.new_sec = int(self.current_time.total_seconds()%60)
+        return f"{self.new_min:02d}:{self.new_sec:02d}"
+    
+    def is_running(self) -> bool:
+       return self.get_time_str != self.expiring_time
+
+
+    
+
+if __name__ == '__main__':
+    timer=MantiTimer(min=3,sec=1)
+    timer.start()
+    while timer.is_running():
+        print(timer.get_time_str)
+        

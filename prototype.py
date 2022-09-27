@@ -28,23 +28,30 @@ def create_enemies(number=1):
         enemies.append(en.Enemy())
     return enemies
 
+
+def draw_updated_positions(enemies, x, y):
+        # draw
+        screen.clear()
+        # move enemies when user input
+        for enemy in enemies:
+            enemy.update_position()
+            # check if enemy hits player
+            if (enemy.y, enemy.x) == (y, x):
+                enemy.collision_player()    
+            ...
+            screen.addch(enemy.y, enemy.x, enemy.img, curses.color_pair(1)) 
+            ...
+        screen.addch(y, x, "O", curses.color_pair(1))
+        win.refresh()
+        screen.refresh()
+
 def game_loop(screen):
     """called by curses"""
     x, y = 5, 5
     enemies = create_enemies(50)
 
     # draw
-    screen.clear()
-    # draw the enemy objects
-    for enemy in enemies:
-        screen.addch(enemy.y, enemy.x, enemy.img, curses.color_pair(1))
-        # check if enemy hits player
-        if (enemy.y, enemy.x) == (y, x):
-            enemy.collision_player()    
-    screen.addch(y, x, "O", curses.color_pair(1))
-    win.refresh()
-    screen.refresh()
-
+    draw_updated_positions(enemies, x, y)
 
     while True:
 
@@ -63,31 +70,13 @@ def game_loop(screen):
         else:
             # move enemies when user didn'T input anything
             time.sleep(0.1)
-            screen.clear()
-            for enemy in enemies:
-                enemy.update_position()
-                # check if enemy hits player
-                if (enemy.y, enemy.x) == (y, x):
-                    enemy.collision_player()    
-                screen.addch(enemy.y, enemy.x, enemy.img, curses.color_pair(1)) 
-            screen.addch(y, x, "O", curses.color_pair(1))
-            win.refresh()
-            screen.refresh()
+            draw_updated_positions(enemies, x, y)
             continue
         print(x, y)
 
         # draw
-        screen.clear()
-        # move enemies when user input
-        for enemy in enemies:
-            enemy.update_position()
-            # check if enemy hits player
-            if (enemy.y, enemy.x) == (y, x):
-                enemy.collision_player()    
-            screen.addch(enemy.y, enemy.x, enemy.img, curses.color_pair(1)) 
-        screen.addch(y, x, "O", curses.color_pair(1))
-        win.refresh()
-        screen.refresh()
+        draw_updated_positions()
+
 
 
 if __name__ == "__main__":

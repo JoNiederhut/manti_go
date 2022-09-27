@@ -5,6 +5,8 @@ import curses
 from random import randint
 import enemy as en
 import time
+import logging
+logging.basicConfig(filename="log.txt", filemode="w")
 
 # WASD keys
 KEY_COMMANDS = {97: "left", 100: "right", 119: "up", 115: "down"}
@@ -38,12 +40,12 @@ def draw_updated_positions(enemies, x, y):
             # check if enemy hits player
             if (enemy.y, enemy.x) == (y, x):
                 enemy.collision_player()    
-            ...
+            logging.warning(str(enemy))
             screen.addch(enemy.y, enemy.x, enemy.img, curses.color_pair(1)) 
-            ...
         screen.addch(y, x, "O", curses.color_pair(1))
         win.refresh()
         screen.refresh()
+
 
 def game_loop(screen):
     """called by curses"""

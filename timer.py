@@ -1,5 +1,5 @@
 import time
-from datetime import datetime, timedelta
+from datetime import datetime
 
 class MantiTimer():
     """This class handles the time in the game"""

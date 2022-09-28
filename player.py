@@ -22,7 +22,8 @@ class Player:
         elif direction == "down":
             self.y += 1
         else:
-            pass
+            return False
+        return True
 
     def collision_player(self):
         self.img = "\U0001F4A5"

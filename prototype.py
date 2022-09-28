@@ -17,6 +17,9 @@ import curses
 import player as pl
 
 from timer import MantiTimer
+from map_class import MantiMap
+from map_class import KOTTI
+
 import enemy as en
 import time
 import logging
@@ -35,7 +38,9 @@ curses.noecho()
 curses.raw()
 screen.keypad(False)
 
-win = curses.newwin(20, 20, 0, 0)
+SYMBOLS = dict(W="\U0001F9F1", m="\U0001F95F", E="\U0001F6AA")
+
+win = curses.newwin(40, 20, 0, 0)
 win.nodelay(True)
 
 
@@ -44,15 +49,22 @@ target_time = (2,5)
 clock = MantiTimer(min=3,sec=5)
 clock.start()
 
-def draw(player, screen, win, time_to_draw:str, enemies):
+
+
+def draw(level, player, screen, win, time_to_draw:str, enemies):
     screen.clear()
+    for symbol in "WmE":
+        for y,x in level.find_coordinates(symbol):
+        
+            screen.addch(y,x*2, SYMBOLS[symbol], curses.color_pair(1))
+            
     for enemy in enemies:
         move_enemies(enemies)
-        screen.addch(enemy.y, enemy.x, enemy.img, curses.color_pair(1)) 
-    screen.addch(player.y, player.x, player.img, curses.color_pair(1))
+        screen.addch(enemy.y, enemy.x*2, enemy.img, curses.color_pair(1)) 
+    screen.addch(player.y, player.x*2, player.img, curses.color_pair(1))
     screen.addstr(0,85, time_to_draw, curses.color_pair(1))
     # check if enemy hits player
-    if (enemy.y, enemy.x) == (player.y, player.x):
+    if (enemy.y, enemy.x) == (player.y, player.x*2):
         enemy.collision_player()  
     win.refresh()
     screen.refresh()
@@ -84,16 +96,19 @@ def move_enemies(enemies):
 def game_loop(screen):
     """called by curses"""
 
-    enemies = create_enemies(50)
-    player = pl.Player(5, 5)
-    draw(player, screen,win,'00:00', enemies)
+    level = MantiMap(KOTTI)
+    enemies = create_enemies(10) #, level
+    player = pl.Player(5, 5, level)
+    
+    draw(level, player, screen,win,'00:00', enemies)
+
     
     while clock.is_running():
         if move_player(win,player):
-           draw(player, screen,win,clock.get_time_str, enemies)
+           draw(level, player, screen,win,clock.get_time_str, enemies)
         else:
            time.sleep(0.1)
-           draw(player, screen,win,clock.get_time_str, enemies)
+           draw(level, player, screen,win,clock.get_time_str, enemies)
 
 if __name__ == "__main__":
     curses.wrapper(game_loop)

@@ -1,7 +1,7 @@
 
 """ The Map Class """
 
-map =  """WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+KOTTI =  """WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
 W                 WWWWWWWWW          WWWWWW
 W                 WWWWWWWWW     m    WWWWWW
 W  WWWWWW         WWWWWWWWW          WWWWWW
@@ -26,18 +26,19 @@ WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
 
 
 class MantiMap:
-    def __init__(self, map):
-        self.map= map
+    def __init__(self, map_str):
+        self.map= map_str
 
-    def find_coordinates(self, map, chr):
+    def find_coordinates(self, chr):
         """with this function you can find the coordinates of the forbidden area, manti, and exit point
         chrachter description:
-        w = wall
+        W = wall
         E = exit
         m = manti
         """
+        
         wall_position = []
-        for y, item in enumerate(map.splitlines()):
+        for y, item in enumerate(self.map.splitlines()):
             for x, chracter in enumerate(item):
                 if chracter == chr:
                     wall_position.append((y,x))

@@ -1,4 +1,3 @@
-import time
 from datetime import datetime
 
 class MantiTimer():
@@ -25,8 +24,6 @@ class MantiTimer():
     def is_running(self) -> bool:
        return self.get_time_str != self.expiring_time
 
-
-    
 
 if __name__ == '__main__':
     timer=MantiTimer(min=3,sec=1)

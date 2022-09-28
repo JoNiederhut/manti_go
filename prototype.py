@@ -15,7 +15,8 @@ TODO:
 """
 import curses
 from timer import MantiTimer
-#from multiprocessing import Process
+from background import MAZE1, NEW_MAZE
+
 # WASD keys
 KEY_COMMANDS = {97: "left", 100: "right", 119: "up", 115: "down"}
 
@@ -29,17 +30,18 @@ curses.raw()
 screen.keypad(False)
 
 win = curses.newwin(20, 20, 0, 0)
-win.nodelay(True)
+win.nodelay(False)
 
 # prepare the timer
 target_time = (2,5)
 clock = MantiTimer(min=3,sec=5)
 clock.start()
 
-def draw(x, y, screen, win, time_to_draw:str):
+def draw(x, y, screen, win,maze:str,time_to_draw:str):
     screen.clear()
-    screen.addch(y, x, "O", curses.color_pair(1))
+    screen.addstr(1,0, maze)
     screen.addstr(0,85, time_to_draw, curses.color_pair(1))
+    screen.addch(y, x, u"\U0001F4A5", curses.color_pair(1))
     win.refresh()
     screen.refresh()
 
@@ -61,14 +63,14 @@ def handle_moves(win,x,y):
 def game_loop(screen):
     """called by curses"""
     x, y = 5, 5
-    draw(x,y,screen,win,'00:00')
+    draw(x,y,screen,win,NEW_MAZE,'00:00')
     
 
     while clock.is_running():
-        draw(x,y,screen,win,clock.get_time_str)
+        draw(x,y,screen,win,NEW_MAZE,clock.get_time_str)
         # handle moves
         x,y = handle_moves(win,x,y)
-        draw(x,y,screen,win,clock.get_time_str)
+        draw(x,y,screen,win,NEW_MAZE,clock.get_time_str)
 
 
 if __name__ == "__main__":

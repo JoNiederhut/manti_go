@@ -44,7 +44,7 @@ target_time = (2,5)
 clock = MantiTimer(min=3,sec=5)
 clock.start()
 
-def draw(screen, win, time_to_draw:str, enemies):
+def draw(player, screen, win, time_to_draw:str, enemies):
     screen.clear()
     for enemy in enemies:
         move_enemies(enemies)
@@ -86,14 +86,14 @@ def game_loop(screen):
 
     enemies = create_enemies(50)
     player = pl.Player(5, 5)
-    draw(screen,win,'00:00', enemies)
+    draw(player, screen,win,'00:00', enemies)
     
     while clock.is_running():
-        if move_player(player):
-           draw(screen,win,clock.get_time_str, enemies)
+        if move_player(win,player):
+           draw(player, screen,win,clock.get_time_str, enemies)
         else:
            time.sleep(0.1)
-           draw(screen,win,clock.get_time_str, enemies)
+           draw(player, screen,win,clock.get_time_str, enemies)
 
 if __name__ == "__main__":
     curses.wrapper(game_loop)

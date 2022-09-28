@@ -5,7 +5,7 @@ class Player:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-        self.img = ["\U0001FFFF"]
+        self.img = "\U0001F9C0"
         self.num_manti = 10
 
     @property

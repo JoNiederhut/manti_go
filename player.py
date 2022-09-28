@@ -2,9 +2,9 @@
 
 class Player:
 
-    def __init__(self):
-        self.x = 5
-        self.y = 5
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
         self.img = ["\U0001FFFF"]
         self.num_manti = 10
 
@@ -21,9 +21,7 @@ class Player:
             self.y -= 1
         elif direction == "down":
             self.y += 1
-        else:
-            return False
-        return True
+
 
     def collision_player(self):
         self.img = "\U0001F4A5"

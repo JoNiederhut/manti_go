@@ -3,6 +3,8 @@ Code that we are testing
 """
 
 from timer import MantiTimer
+from player import Player
+import enemy as en
 
 class MantiGo:
 
@@ -10,6 +12,8 @@ class MantiGo:
         minutes, seconds = time_limit
         self.timer = MantiTimer(minutes, seconds)
         self.timer.start()
+        self.player = Player()
+        self.enemies = self.create_enemies(50)
         
     @property
     def status(self):
@@ -21,5 +25,9 @@ class MantiGo:
 
 
 
-
-        self.status = "Game Over"
+    def create_enemies(self,number=1):
+        enemies = []
+        # create the enemy objects
+        for enemy in range(number):
+            enemies.append(en.Enemy())
+        return enemies

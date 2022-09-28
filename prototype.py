@@ -14,7 +14,7 @@ TODO:
  - make smaller functions
 """
 import curses
-import Player as pl
+import player as pl
 
 from timer import MantiTimer
 import enemy as en
@@ -62,7 +62,7 @@ def move_player(win, player):
     char = win.getch()
     direction = KEY_COMMANDS.get(char)
     if direction is None:
-        return false
+        return False
     else:
         player.player_move(direction)
     return True

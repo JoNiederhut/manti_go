@@ -1,3 +1,4 @@
+'''This script is to initiate the map for the game Manti GO!'''
 import os
 import random
 import pygame
@@ -26,8 +27,8 @@ level1tile = ["------------------------------------",
 colors = {'X': pygame.color.THECOLORS['blue'],
           '-': pygame.color.THECOLORS['grey'],
           '$': pygame.color.THECOLORS['green'],
-          '^': pygame.color.THECOLORS['brown'], 
-          'E': pygame.color.THECOLORS['black']        
+          '^': pygame.color.THECOLORS['brown'],
+          'E': pygame.color.THECOLORS['black']
           }
 
 blocksize = 32
@@ -119,7 +120,6 @@ class Block(pygame.sprite.Sprite):
     def __init__(self, color, width, height, x, y):
        # Call the parent class (Sprite) constructor
        pygame.sprite.Sprite.__init__(self)
-
        # Create an image of the block, and fill it with a color.
        # This could also be an image loaded from the disk.
        self.image = pygame.Surface([width, height])

@@ -17,6 +17,7 @@ import curses
 import player as pl
 
 from timer import MantiTimer
+from mantisound import MantiDj
 from map_class import MantiMap
 from map_class import KOTTI
 
@@ -38,14 +39,14 @@ curses.noecho()
 curses.raw()
 screen.keypad(False)
 
-SYMBOLS = dict(W="\U0001F9F1", m="\U0001F95F", E="\U0001F6AA")
+#SYMBOLS = dict(W="\U0001F9F1", m="\U0001F95F", E="\U0001F6AA")
+SYMBOLS = dict(W="🚧", m="🥟", E="🚪")
 
 win = curses.newwin(40, 20, 0, 0)
 win.nodelay(True)
 
 
 # prepare the timer
-target_time = (2,5)
 clock = MantiTimer(min=3,sec=5)
 clock.start()
 
@@ -96,6 +97,7 @@ def move_enemies(enemies):
 def game_loop(screen):
     """called by curses"""
 
+    MantiDj().play_music()
     level = MantiMap(KOTTI)
     enemies = create_enemies(10) #, level
     player = pl.Player(5, 5, level)

@@ -1,0 +1,2 @@
+[pylint]
+  disable=too-few-public-methods, invalid-name

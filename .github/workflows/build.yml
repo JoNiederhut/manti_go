@@ -1,4 +1,4 @@
-name: Tests for mantigo
+name: Tests_for_mantigo
 
 on:
   push:

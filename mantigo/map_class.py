@@ -44,3 +44,9 @@ class MantiMap:
                     wall_position.append((y,x))
         return wall_position
 
+
+    def max_position(self):
+        lines = self.map.splitlines()
+        y_max = len(lines) - 1
+        x_max = len(lines[0]) - 1
+        return y_max, x_max

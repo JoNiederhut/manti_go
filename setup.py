@@ -22,7 +22,7 @@ setup(
       "Programming Language :: Python :: 3.10"
    ],
    entry_points={
-        "console_script":["mantigo=mantigo.prototype:main"]
+        "console_scripts":["mantigo=mantigo.prototype:main"]
    }
 )
 

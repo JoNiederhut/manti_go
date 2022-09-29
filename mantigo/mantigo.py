@@ -2,9 +2,10 @@
 Code that we are testing
 """
 
-from mantigo.timer import MantiTimer
-from mantigo.player import Player
-import mantigo.enemy as en
+from timer import MantiTimer
+from map_class import KOTTI, MantiMap
+from player import Player
+import enemy as en
 
 class MantiGo:
     """Top-level class for the game logic."""
@@ -12,7 +13,8 @@ class MantiGo:
         minutes, seconds = time_limit
         self.timer = MantiTimer(minutes, seconds)
         self.timer.start()
-        self.player = Player()
+        self.manti_map = MantiMap(KOTTI)
+        self.player = Player(8, 8, MantiMap)
         self.enemies = self.create_enemies(50)
 
 

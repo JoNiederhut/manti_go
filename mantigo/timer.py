@@ -33,7 +33,6 @@ class MantiTimer():
         '''Runs the time'''
         return self.get_time_str != self.expiring_time
 
-
 if __name__ == '__main__':
     timer=MantiTimer(minutes=3,sec=1)
     timer.start()

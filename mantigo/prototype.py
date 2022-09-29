@@ -113,6 +113,9 @@ def game_loop(screen):
            time.sleep(0.1)
            draw(level, player, screen,win,clock.get_time_str, enemies)
 
-if __name__ == "__main__":
+def main():                     # makes program callable in a different environement ("mantigo")
     curses.wrapper(game_loop)
     curses.endwin()
+    
+if __name__ == "__main__":       # makes program executable ("python prototype.py")
+    main()

@@ -6,7 +6,7 @@ class Player:
         self.x = x
         self.y = y
         self.img = "\U0001F9C0"
-        self.num_manti = 10
+        self.lives = 3
         self.manti_map = manti_map
 
     @property
@@ -27,6 +27,9 @@ class Player:
         if (self.y, self.x) in self.manti_map.find_coordinates("W"):
             self.y = old_position[0]
             self.x = old_position[1]
+        elif (self.y, self.x) in self.manti_map.find_coordinates("m"):
+            self.manti_map.get_manti((self.y, self.x))
+            self.lives += 1
 
 
     def collision_player(self):

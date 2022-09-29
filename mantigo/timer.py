@@ -3,8 +3,8 @@ from datetime import datetime
 
 class MantiTimer():
     """This class handles the time in the game"""
-    def __init__(self,min:int,sec:int) -> None :
-        self.min_ = min
+    def __init__(self,minutes:int,sec:int) -> None :
+        self.min_ = minutes
         self.sec_ = sec
     
     @property

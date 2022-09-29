@@ -40,8 +40,8 @@ curses.raw()
 screen.keypad(False)
 
 SYMBOLS = dict(W="\U0001F9F1", m="\U0001F95F", E="\U0001F6AA")
-
-win = curses.newwin(40, 20, 0, 0)
+#SYMBOLS = dict(W="🚧", m="🦄", E="\U0001F6AA")
+win = curses.newwin(40, 20, 0, 0)   
 win.nodelay(True)
 
 
@@ -63,7 +63,8 @@ def draw(level, player, screen, win, time_to_draw:str, enemies):
         move_enemies(enemies)
         screen.addch(enemy.y, enemy.x*2, enemy.img, curses.color_pair(1)) 
     screen.addch(player.y, player.x*2, player.img, curses.color_pair(1))
-    screen.addstr(0,85, time_to_draw, curses.color_pair(1))
+    screen.addstr(0,85, f"Timer: {time_to_draw}", curses.color_pair(1))
+    screen.addstr(0,100, f'Lives: {player.lives}', curses.color_pair(1))
     # check if enemy hits player
     if (enemy.y, enemy.x) == (player.y, player.x*2):
         enemy.collision_player()  
@@ -91,7 +92,7 @@ def move_enemies(enemies):
     # move enemies when user input
     for enemy in enemies:
         enemy.update_position()  
-        logging.warning(str(enemy))
+        #logging.warning(str(enemy))
 
 
 def check_collision(player, enemies, clock):

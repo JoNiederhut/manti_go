@@ -1,12 +1,13 @@
+import logging
 
 """ The Map Class """
 
 KOTTI =  """WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
-W                 WWWWWWWWW          WWWWWW
+Wm                WWWWWWWWW          WWWWWW
 W                 WWWWWWWWW     m    WWWWWW
 W  WWWWWW         WWWWWWWWW          WWWWWW
 W  WWWWWW    m    WWWWWWWWW               W
-W  WWWWWW                                 W
+W  WWWWWW    m                            W
 W                 WWWWWWWWW               W
 W  WWWWWW         WWWWWWWWW          WWWWWW
 W  WWWWWW         WWWWWWWWW    m     WWWWWW
@@ -44,3 +45,10 @@ class MantiMap:
                     wall_position.append((y,x))
         return wall_position
 
+    def get_manti(self,position):
+        y,x = position
+        lines = self.map.splitlines()
+        manti_position = y*(len(lines[0]) +1 ) +  x 
+        logging.warning(f"manti position, length:{manti_position, len(lines[0])}")
+        self.map = self.map[:manti_position ] + " " + self.map[manti_position +1 : ]
+        

@@ -2,9 +2,9 @@
 Code that we are testing
 """
 
-from timer import MantiTimer
-from player import Player
-import enemy as en
+from mantigo.timer import MantiTimer
+from mantigo.player import Player
+import mantigo.enemy as en
 
 class MantiGo:
     """Top-level class for the game logic."""

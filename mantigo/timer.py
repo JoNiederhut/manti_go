@@ -21,6 +21,9 @@ class MantiTimer():
         self.start_time = datetime.now()
         return self.start_time
 
+    def time_penalty(self):
+        self.sec_ +=20
+
     @property
     def get_time_str(self):
         '''Returns the time'''

@@ -47,7 +47,7 @@ win.nodelay(True)
 
 # prepare the timer
 target_time = (2,5)
-clock = MantiTimer(min=3,sec=5)
+clock = MantiTimer(minutes=3,sec=5)
 clock.start()
 
 
@@ -94,6 +94,13 @@ def move_enemies(enemies):
         logging.warning(str(enemy))
 
 
+def check_collision(player, enemies, clock):
+    player.position
+    for e in enemies:
+        if (e.x, e.y) == player.position:
+            clock.time_penalty()                     # later impute with "enemies.position"
+
+
 def game_loop(screen):
     """called by curses"""
 
@@ -111,6 +118,9 @@ def game_loop(screen):
         else:
            time.sleep(0.1)
            draw(level, player, screen,win,clock.get_time_str, enemies)
+        
+        check_collision(player, enemies, clock)
+
 
 def main():                     # makes program callable in a different environement ("mantigo")
     curses.wrapper(game_loop)

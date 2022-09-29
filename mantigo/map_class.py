@@ -45,6 +45,7 @@ class MantiMap:
                     wall_position.append((y,x))
         return wall_position
 
+
     def get_manti(self,position):
         y,x = position
         lines = self.map.splitlines()
@@ -52,3 +53,11 @@ class MantiMap:
         logging.warning(f"manti position, length:{manti_position, len(lines[0])}")
         self.map = self.map[:manti_position ] + " " + self.map[manti_position +1 : ]
         
+
+
+    def max_position(self):
+        lines = self.map.splitlines()
+        y_max = len(lines) - 1
+        x_max = len(lines[0]) - 1
+        return y_max, x_max
+

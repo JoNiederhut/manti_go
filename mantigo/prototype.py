@@ -56,11 +56,10 @@ def draw(level, player, screen, win, time_to_draw:str, enemies):
     screen.clear()
     for symbol in "WmE":
         for y,x in level.find_coordinates(symbol):
-        
             screen.addch(y,x*2, SYMBOLS[symbol], curses.color_pair(1))
-            
     for enemy in enemies:
-        move_enemies(enemies)
+        enemy.update_position()
+        logging.warning(str(enemy))
         screen.addch(enemy.y, enemy.x*2, enemy.img, curses.color_pair(1)) 
     screen.addch(player.y, player.x*2, player.img, curses.color_pair(1))
     screen.addstr(0,85, f"Timer: {time_to_draw}", curses.color_pair(1))
@@ -81,19 +80,13 @@ def move_player(win, player):
         player.player_move(direction)
     return True
 
-def create_enemies(number=1):
+def create_enemies(map_level, number=1):
     enemies = []
     # create the enemy objects
     for enemy in range(number):
-        enemies.append(en.Enemy())
+        enemies.append(en.Enemy(map_level))
     return enemies
    
-def move_enemies(enemies):
-    # move enemies when user input
-    for enemy in enemies:
-        enemy.update_position()  
-        #logging.warning(str(enemy))
-
 
 def check_collision(player, enemies, clock):
     player.position
@@ -102,11 +95,12 @@ def check_collision(player, enemies, clock):
             clock.time_penalty()                     # later impute with "enemies.position"
 
 
+
 def game_loop(screen):
     """called by curses"""
 
     level = MantiMap(KOTTI)
-    enemies = create_enemies(10) #, level
+    enemies = create_enemies(level, 10) #, level
     player = pl.Player(5, 5, level)
     MantiDj().play_music()
     
@@ -117,7 +111,7 @@ def game_loop(screen):
         if move_player(win,player):
            draw(level, player, screen,win,clock.get_time_str, enemies)
         else:
-           time.sleep(0.1)
+           time.sleep(0.5)
            draw(level, player, screen,win,clock.get_time_str, enemies)
         
         check_collision(player, enemies, clock)

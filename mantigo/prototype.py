@@ -19,6 +19,7 @@ import player as pl
 from timer import MantiTimer
 from map_class import MantiMap
 from map_class import KOTTI
+from mantisound import MantiDj
 
 import enemy as en
 import time
@@ -99,6 +100,7 @@ def game_loop(screen):
     level = MantiMap(KOTTI)
     enemies = create_enemies(10) #, level
     player = pl.Player(5, 5, level)
+    MantiDj().play_music()
     
     draw(level, player, screen,win,'00:00', enemies)
 

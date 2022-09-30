@@ -25,4 +25,4 @@ setup(
         "console_scripts":["mantigo=mantigo.prototype:main"]
    }
 )
-
+    

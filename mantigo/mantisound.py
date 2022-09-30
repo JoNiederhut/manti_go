@@ -5,7 +5,7 @@ from os import path, listdir
 from numpy.random import choice
 from pygame import mixer
 
-PATH = "./manti_music/"
+PATH = "./mantigo/manti_music/"
 
 MANTI_ARCADE_TONES = [path.join(PATH,file) for file in listdir(PATH)]
 

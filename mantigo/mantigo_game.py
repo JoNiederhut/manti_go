@@ -54,6 +54,11 @@ class MantiGo:
         for enemy in self.enemies:
             enemy.update_position()
 
+        for e in self.enemies:
+            if (e.x, e.y) == self.player.position:
+                self.timer.time_penalty
+                return True                     # later impute with "enemies.position"
+
 
     def move(self,direction):
         self.player.player_move(direction)

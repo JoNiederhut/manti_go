@@ -1,5 +1,5 @@
 
-import mantigo as mtg
+import mantigo.mantigo as mtg
 
 
 TEST_LEVEL = """
@@ -7,7 +7,7 @@ WWWWWWWWWW
 W        W
 W  mmmmm E
 W        W
-WWWWWWWWWW"""
+WWWWWWWWWW""".strip()
 
 
 def count_manti(game):

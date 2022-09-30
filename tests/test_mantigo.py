@@ -11,19 +11,19 @@ TDD Cycle (Test Driven Development)
 """
 
 import time
-import mantigo as mtg
+import mantigo.mantigo as mtg
 import pytest
 
 
 TEST_LEVEL = """
 WWWWWWWWWW
 W       EW
-W        W
+WW       W
 W        W
 W     m  W
 W m      W
 WWWWWWWWWW
-"""
+""".strip()
 
 
 def count_symbols(game, symbol):
@@ -58,7 +58,7 @@ def test_mantigo_timer(game):
 def test_get_symbols(game):
     """The get_symbols method returns a long list of symbols"""
     # count symbols on the test map
-    assert count_symbols(game, 'W') == 34
+    assert count_symbols(game, 'W') == 31
     assert count_symbols(game, 'E') == 1
     assert count_symbols(game, 'm') == 2
     assert count_symbols(game, 'player') == 1

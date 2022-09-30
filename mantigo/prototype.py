@@ -39,16 +39,15 @@ curses.noecho()
 curses.raw()
 screen.keypad(False)
 
-SYMBOLS = dict(W="\U0001F9F1", m="\U0001F95F", E="\U0001F6AA")
-#SYMBOLS = dict(W="🚧", m="🦄", E="\U0001F6AA")
+#SYMBOLS = dict(W="\U0001F9F1", m="\U0001F95F", E="\U0001F6AA")
+SYMBOLS = dict(W="🚧", m="🦄", E="\U0001F6AA")
 win = curses.newwin(40, 20, 0, 0)   
 win.nodelay(True)
 
 
-# prepare the timer
-target_time = (2,5)
-clock = MantiTimer(minutes=3,sec=5)
-clock.start()
+# # prepare the timer
+# clock = MantiTimer(minutes=3,sec=5)
+# clock.start()
 
 
 
@@ -89,15 +88,20 @@ def create_enemies(map_level, number=1):
    
 
 def check_collision(player, enemies, clock):
-    player.position
+    
     for e in enemies:
         if (e.x, e.y) == player.position:
-            clock.time_penalty()                     # later impute with "enemies.position"
+            clock.time_penalty
+            return True                     # later impute with "enemies.position"
 
 
 
 def game_loop(screen):
     """called by curses"""
+
+    # prepare the timer
+    clock = MantiTimer(minutes=1,sec=5)
+    clock.start()
 
     level = MantiMap(KOTTI)
     enemies = create_enemies(level, 10) #, level

@@ -1,5 +1,5 @@
 '''Timer.py initialises the time functionality and timer for the game Manti GO!'''
-from datetime import datetime
+from datetime import datetime, timedelta
 
 class MantiTimer():
     """This class handles the time in the game"""
@@ -20,16 +20,21 @@ class MantiTimer():
         '''Starts the timer'''
         self.start_time = datetime.now()
         return self.start_time
-
+    
+    @property
     def time_penalty(self):
-        self.sec_ +=20
+        return timedelta(seconds=20.0)
+        
+        
 
     @property
     def get_time_str(self):
         '''Returns the time'''
+
         self.current_time = datetime.now() - self.start_time
+    
         self.new_minutes = int(self.current_time.total_seconds()//60)
-        self.new_sec = int(self.current_time.total_seconds()%60)
+        self.new_sec  = int(self.current_time.total_seconds()%60)
         return f"{self.new_minutes:02d}:{self.new_sec:02d}"
 
     def is_running(self) -> bool:
@@ -40,4 +45,6 @@ if __name__ == '__main__':
     timer=MantiTimer(minutes=3,sec=1)
     timer.start()
     while timer.is_running():
+        print(timer.current_time)
+        print(timer.time_penalty)
         print(timer.get_time_str)

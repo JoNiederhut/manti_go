@@ -23,7 +23,8 @@ curses.raw()
 screen.keypad(False)
 
 #SYMBOLS = dict(W="\U0001F9F1", m="\U0001F95F", E="\U0001F6AA")
-SYMBOLS = dict(W="🚧", m="🦄", E="\U0001F6AA", player="P") # add other symbols (enemies, etc.)
+SYMBOLS = dict(W="🚧", m="🦄", E="\U0001F6AA", player="P", police='\U0001F46E', seringe='\U0001F489'
+    , zombie='\U0001F9DF', ninja='\U0001F977', biker='\U0001F6B4', tornado='\U0001F32A' ) # add other symbols (enemies, etc.)
 win = curses.newwin(40, 20, 0, 0)   
 win.nodelay(True)
 

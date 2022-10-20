@@ -8,7 +8,7 @@ The best game of 2022.
 
 This is the project result from our cohort "naive bayleaves" of the "software engineering" week during the data science bootcamp at [Spiced Academy](https://www.spiced-academy.com/de/program/data-science) in Berlin from July to October 2022.
 
-<img alt="manti_go GUI" src="" width="800">
+<img alt="manti_go GUI" src="https://github.com/JoNiederhut/manti_go/blob/main/docs/game.png" width="800">
 
 ## Goal
 

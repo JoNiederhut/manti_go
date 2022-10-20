@@ -44,7 +44,7 @@ Enjoy the game.
 
 **Be delicious**
 
-The goal of the game is to collect as many [manti](https://en.wikipedia.org/wiki/Manti_(food)) as you can at the which represent your number of lifes. All this takes place at the inspiring [Kotti](https://de.wikipedia.org/wiki/Kottbusser_Tor). Use your arrow keys to move the player.
+The goal of the game is to collect as many [manti](https://en.wikipedia.org/wiki/Manti_(food)) as you can at the which represent your number of lifes. All this takes place at the inspiring [Kotti](https://de.wikipedia.org/wiki/Kottbusser_Tor). Use your `A`,`W`,`S`,`D` keys to move the player (*P*).
 
 **Be careful**
 
